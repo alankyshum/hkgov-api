@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/style.css" rel="stylesheet">
+    <style>
+      div {
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: #3c98ca;
+        border: 1px solid #fff;
+        width: 5px;
+        height: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <img src="./test-0.png" alt="">
+    <div class='pixel-inspector'></div>
+
+    <script>
+      const leftOffset = 76;
+      const topOffset = 106;
+      const tableCellWidth = 16;
+      const tableCellHeight = 18.47;
+
+      const columnsCnt = 31;
+      const rowsCnt = 30; // deends on month
+      const srcDiv = document.querySelector('.pixel-inspector');
+
+      for(let y = 0; y < rowsCnt; y++) {
+        for(let x = 0; x < columnsCnt; x++) {
+          const clonedDiv = srcDiv.cloneNode();
+          clonedDiv.style.top = `${topOffset + y * tableCellHeight}px`;
+          clonedDiv.style.left = `${leftOffset + x * tableCellWidth}px`
+          document.body.appendChild(clonedDiv);
+        }
+      }
+    </script>
+  </body>
+</html>

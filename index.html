@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/style.css" rel="stylesheet">
+  </head>
+  <style>
+      div {
+        position: absolute;
+        background-color: #3c98ca;
+        border: 1px solid #fff;
+        width: 5px;
+        height: 5px;
+      }
+  </style>
+  <body>
+    <div class='pixel-inspector'></div>
+
+    <script>
+      function getPixels() {
+        return fetch('/get-positions')
+          .then(res => {
+            return res.json()
+          })
+      }
+
+      getPixels()
+        .then(pixelArray => {
+          const srcDiv = document.querySelector('.pixel-inspector');
+
+          pixelArray.forEach(pixelObj => {
+            const clonedDiv = srcDiv.cloneNode();
+            const backgroundColor = `rgba(${pixelObj.pixelColour.r}, ${pixelObj.pixelColour.g}, ${pixelObj.pixelColour.b}, ${pixelObj.pixelColour.a})`;
+            clonedDiv.style.left = `${pixelObj.pixelPos.x}px`;
+            clonedDiv.style.top = `${pixelObj.pixelPos.y}px`;
+            clonedDiv.style.backgroundColor = backgroundColor;
+            document.body.appendChild(clonedDiv);
+          })
+
+        })
+    </script>
+  </body>
+</html>
