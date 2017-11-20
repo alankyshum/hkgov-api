@@ -29,13 +29,18 @@ function getPixel() {
         return;
       }
 
-      const leftOffset = 76;
-      const topOffset = 106;
-      const tableCellWidth = 16;
-      const tableCellHeight = 18.47;
+      const tableSize = {
+        width: 500,
+        height: 650
+      };
 
-      const columnsCnt = 31;
-      const rowsCnt = 30; // deends on month
+      const leftOffset = 65;
+      const topOffset = 100;
+      const tableCellWidth = 4;
+      const tableCellHeight = 4;
+
+      const columnsCnt = tableSize.width / tableCellWidth;
+      const rowsCnt = tableSize.height / tableCellHeight; // deends on month
 
       const parsedPixelArray = [];
 
